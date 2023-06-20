@@ -11,7 +11,5 @@ def generate_reply():
 
     client = boto3.client('runtime.sagemaker')
     response = client.invoke_endpoint(EndpointName=endpoint_name, ContentType='application/json', Body=json.dumps(request.data).encode('utf-8'))
-    model_predictions = json.loads(response['Body'].read())
-    generated_text = model_predictions[0]['generated_text']
 
     return response
